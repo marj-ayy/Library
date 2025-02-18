@@ -20,5 +20,26 @@
             </tr>
         </thead>
     </table>
+    <button type="button" class="showDialogButton">Add new book</button>
+    <dialog>
+        <button type="button" class="closeDialogButton">Close</button>
+        <form action="">
+            <label for="name">Name:</label><br>
+            <input type="text" name="name" id="name" autofocus><br>
+            <label for="author">Author:</label><br>
+            <input type="text" name="author" id="author"><br>
+            <label for="pages">Pages:</label><br>
+            <input type="number" name="pages" id="pages"><br>
+            <p>Already Read</p>
+            <label for="readYes">Yes</label>
+            <input type="radio" value="Yes" name="read" id="readYes"><br>
+            <label for="readNo">No</label>
+            <input type="radio" value="No" name="read" id="readNo">
+            <br>
+            <button type="reset">Reset</button>
+            <button type="submit">Submit</button>
+        </form>
+        
+    </dialog>
 </body>
 </html>
