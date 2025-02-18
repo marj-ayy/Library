@@ -7,6 +7,13 @@ function Book(name, author, pages, read) {
     this.read = read; // if the book is already read or not
 }
 
+Book.prototype.changeReadStatus = function (){
+    if(this.read === true)
+        this.read = false;
+    else
+        this.read = true;
+};
+
 function addBookToLibrary(name, author, pages, read) {
     book = new Book(name, author, pages, read);
     myLibrary.push(book);
@@ -45,16 +52,22 @@ form.addEventListener("submit", event => {
     const tdPages = document.createElement("td");
     const tdRead = document.createElement("td");
     const tdDelete = document.createElement("td");
+    const tdChangeRead = document.createElement("td");
     const deleteBookButton = document.createElement("button");
     deleteBookButton.type = "button";
     deleteBookButton.classList.add("deleteBookButton");
     deleteBookButton.textContent = "Delete";
     tdDelete.appendChild(deleteBookButton);
+    const changeReadStatusButton = document.createElement("button");
+    changeReadStatusButton.type = "button";
+    changeReadStatusButton.textContent = "Change book read status";
+    tdChangeRead.appendChild(changeReadStatusButton);
     row.appendChild(tdName);
     row.appendChild(tdAuthor);
     row.appendChild(tdPages);
     row.appendChild(tdRead);
     row.appendChild(tdDelete);
+    row.appendChild(tdChangeRead);
     table.appendChild(row);
     tdName.textContent = myLibrary[myLibrary.length - 1].name;
     tdAuthor.textContent = myLibrary[myLibrary.length - 1].author;
@@ -69,5 +82,15 @@ form.addEventListener("submit", event => {
         event.target.parentElement.parentElement.remove();
         myLibrary.splice(bookNumber, 1); 
     });
+    changeReadStatusButton.addEventListener("click", event => {
+        const bookNumber = parseInt(event.target.parentElement.parentElement.classList[0].slice(-1));
+        myLibrary[bookNumber].changeReadStatus();
+        console.log(myLibrary[bookNumber]);
+        if(myLibrary[bookNumber].read === true)
+            event.target.parentElement.parentElement.children[3].textContent = "Yes";
+        else
+            event.target.parentElement.parentElement.children[3].textContent = "No";
+       
+    })
 });
 
